@@ -42,7 +42,7 @@ class YOLOLoss:
         no_object_targets = target[no_object_indices[:, 0], :, no_object_indices[:, 1], no_object_indices[:, 2]]
         no_object_outputs = output[no_object_indices[:, 0], :, no_object_indices[:, 1], no_object_indices[:, 2]]
         no_object_loss = lambda_non_objectness * torch.sum(no_object_targets[:, 0] * (0 - no_object_outputs[:, 0]) ** 2)
-
+        #Interpretable confidence in loss
         confidence_loss = objectness_loss + no_object_loss
 
         # Total loss
